@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HorlogeNewWPF.Properties
+namespace horloge.Properties
 {
 
 

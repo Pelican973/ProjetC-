@@ -6,9 +6,9 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HorlogeNewWPF.trade
+namespace horloge.trade
 {
-    public class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
         protected void OnPropertyChanged<T>(Expression<Func<T>> expression)
         {
