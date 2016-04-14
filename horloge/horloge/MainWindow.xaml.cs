@@ -27,15 +27,19 @@ namespace horloge
             //this.DataContext = new Horloge();                     // version metier
             //this.DataContext = new HorlogeWPF();                  // metié adapter wpf
             //this.DataContext = new HorlogeMVVM(new Horloge());      // version mvvm
-            IHorloge i = new HorlogeAleatoire();
-            while (i.Time.Hours == 0)
-            {
-                App.DoEvents();
-            }
+
+            //while (i.Time.Hours == 0)
+            //{
+            //    App.DoEvents();
+            //}
             //this.grid.DataContext = i;
 
             //this.grid.DataContext = new HorlogeReel();
-            this.grid.DataContext = new HorlogeFuseau(-8);
+            HorlogeReel Hr = new HorlogeReel();
+            this.Stack.DataContext = Hr;
+            this.GridHr.DataContext = Hr;
+
+
          }
     }
 }
