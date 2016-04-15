@@ -35,9 +35,11 @@ namespace horloge
             //this.grid.DataContext = i;
 
             //this.grid.DataContext = new HorlogeReel();
-            HorlogeReel Hr = new HorlogeReel();
-            this.Stack.DataContext = Hr;
-            this.GridHr.DataContext = Hr;
+            //HorlogeReel Hr = new HorlogeReel();
+            //HorlogeVirtuelle Hv = new HorlogeVirtuelle();
+            //this.Stack.DataContext = Hr;
+            //this.GridHr.DataContext = Hr;
+            //this.GridHv.DataContext = Hv;
 
 
          }

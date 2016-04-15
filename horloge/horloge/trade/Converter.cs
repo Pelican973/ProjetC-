@@ -15,8 +15,23 @@ namespace horloge.trade
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (parameter != null)
+            {
+                switch (parameter.ToString())
+                {
+                    case "SEC":
+                        value = (int)value * 0.006;
+                        break;
+                    case "MIN":
+                        value = (int)value * 6;
+                        break;
+                    case "HOUR":
+                        value = (int)value * 30;
+                        break;
+                }
+            }
 
-            return (double)value * 0.006;
+            return value;
         }
 
         public object ConvertBack(object value, Type targetTypes, object parameter, CultureInfo culture)
