@@ -189,6 +189,7 @@
                 <TextBlock Text="" />
             </StackPanel>
             <TextBlock Text="" />
+            
             <!--Horloge horloge aléatoire-->
             <Grid DataContext="{StaticResource ha}" 
                 x:Name="GridHa" 
@@ -337,6 +338,11 @@
                   HorizontalAlignment="Left"
                   Margin="386,82,0,0"
                   VerticalAlignment="Top"
-                  Command="{Binding ReverseCommand}"/>
+                  Command="{Binding ReverseCommand}"
+                  />
+        <DockPanel VerticalAlignment="Center" Margin="360,135,31,316" Height="30">
+            <TextBox Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+            <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slValue" ValueChanged="Slider_ValueChanged" />
+        </DockPanel>
     </Grid>
 </Window>

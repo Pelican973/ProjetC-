@@ -24,7 +24,15 @@ namespace horloge
         public MainWindow()
         {
             InitializeComponent();
-            this.GridHf.DataContext = new HorlogeFuseau(2);
+            
+            this.DataContext = new HorlogeReel();            
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider slider = sender as Slider;
+            ViewModelBase viewModel = (ViewModelBase)DataContext;
+            viewModel.Speed_changed(slider.Value);
         }
     }
 }

@@ -16,8 +16,9 @@ namespace horloge.trade
     /// </summary>
     public class ViewModelBase : INotifyPropertyChanged
     {
-
+        protected double _speed;
         protected bool Reverse { get; set; } = false;
+
         #region OnPropertyChanger        
         protected void OnPropertyChanged<T>(Expression<Func<T>> expression)
         {
@@ -66,5 +67,11 @@ namespace horloge.trade
         }
         #endregion
 
+        #region slider
+        public void Speed_changed(double Speed)
+        {
+            _speed = Speed;
+        }
+        #endregion
     }
 }

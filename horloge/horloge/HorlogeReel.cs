@@ -26,17 +26,15 @@ namespace horloge
 
     public class HorlogeVirtuelle : Horloge
     {
-        private const int ADD_MILLI = 5;
-
         protected override void OnTicked()
         {
             if (!Reverse)
             {
-                this.Time = this.Time.Add(new TimeSpan(0, 0, 0, ADD_MILLI));
+                this.Time = this.Time.Add(new TimeSpan(0, 0, 0, 0, (int)_speed));
             }
             else
             {
-                this.Time = this.Time.Subtract(new TimeSpan(0, 0, 0, ADD_MILLI));
+                this.Time = this.Time.Subtract(new TimeSpan(0, 0, 0, (int)_speed));
             }
         }
     }
