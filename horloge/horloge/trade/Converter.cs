@@ -15,23 +15,26 @@ namespace horloge.trade
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            double angle = 0;
+            
             if (parameter != null)
             {
-                switch (parameter.ToString())
+                string param = parameter.ToString();
+                switch (param)
                 {
                     case "SEC":
-                        value = (int)value * 0.006;
+                        angle = (double)value *0.006;
                         break;
                     case "MIN":
-                        value = (int)value * 6;
+                        angle = (double)value * 0.0001;
                         break;
                     case "HOUR":
-                        value = (int)value * 30;
+                        angle = (double)value * 30 / 3600000;
                         break;
                 }
             }
 
-            return value;
+            return angle;
         }
 
         public object ConvertBack(object value, Type targetTypes, object parameter, CultureInfo culture)
@@ -39,37 +42,5 @@ namespace horloge.trade
             throw new NotImplementedException();
         }
 
-}
-
-    ///// <summary>
-    ///// Permet de convertir des minutes en angle
-    ///// </summary>
-    //public class MinuteAngleConverter : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return (int)value * 6;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
-
-    ///// <summary>
-    ///// Permet de convertir des heures en angle
-    ///// </summary>
-    //public class HeureAngleConverter : IValueConverter
-    //{
-    //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        return (int)value * 30;
-    //    }
-
-    //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+    }
 }

@@ -11,14 +11,13 @@ namespace horloge
 {
     public abstract class Horloge : trade.ViewModelBase, IHorloge
     {
-        public TimeSpan Time { get; protected set; } = new TimeSpan();
-        public int ToMillisecondes { get { return ((int)TimeSpan.FromSeconds(Time.Seconds).TotalMilliseconds + Time.Milliseconds); }  protected set { } }
+        public TimeSpan Time { get; protected set; } = new TimeSpan(0,DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
 
         public Horloge()
         {
 #if DISPATCHER
             DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            dt.Interval = new TimeSpan(0, 0, 0, 0, 1);
             dt.Tick += (e, v) =>
             {
                 OnTicked();

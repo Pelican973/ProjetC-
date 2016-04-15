@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>icom</Title>
+      <Author>CLEMESSY</Author>
+      <Description>
+      </Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>icom</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>name</ID>
+          <ToolTip>name</ToolTip>
+          <Default>name</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[#region $name$
+RelayCommand _$name$Command;
+        public ICommand $name$Command
+        {
+            get
+            {
+                if (_$name$Command == null)
+                {
+                    _$name$Command = new RelayCommand(param => this.Do$name$(),
+                        param => Can$name$);
+                }
+                return _$name$Command;
+            }
+        }
+        // function for $name$
+        private void Do$name$()
+        {
+            Console.WriteLine("Do$name$");
+        }
+        private bool Can$name$
+        {
+            get
+            {
+                return false;
+            }
+        }
+#endregion]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

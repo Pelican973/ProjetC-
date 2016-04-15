@@ -24,24 +24,7 @@ namespace horloge
         public MainWindow()
         {
             InitializeComponent();
-            //this.DataContext = new Horloge();                     // version metier
-            //this.DataContext = new HorlogeWPF();                  // metié adapter wpf
-            //this.DataContext = new HorlogeMVVM(new Horloge());      // version mvvm
-
-            //while (i.Time.Hours == 0)
-            //{
-            //    App.DoEvents();
-            //}
-            //this.grid.DataContext = i;
-
-            //this.grid.DataContext = new HorlogeReel();
-            //HorlogeReel Hr = new HorlogeReel();
-            //HorlogeVirtuelle Hv = new HorlogeVirtuelle();
-            //this.Stack.DataContext = Hr;
-            //this.GridHr.DataContext = Hr;
-            //this.GridHv.DataContext = Hv;
-
-
-         }
+            this.GridHf.DataContext = new HorlogeFuseau(2);
+        }
     }
 }

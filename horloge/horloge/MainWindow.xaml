@@ -10,18 +10,20 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Height="512"
-        Width="525"        
+        Width="652.434"        
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:HorlogeAleatoire x:Key="ha" />
         <local:HorlogeReel x:Key="hr" />
         <local:HorlogeVirtuelle x:Key="hv" />
+        <local:HorlogeReverse x:Key="rh" />
+        <!--<local:HorlogeFuseau x:Key="hf" />-->
         <trade:DateAngleConverter x:Key="dac" />
     </Window.Resources>
     <Grid DataContext="{StaticResource hr}">
-        <StackPanel Margin="5"
+        <StackPanel Margin="5,5,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Top">
+                    VerticalAlignment="Top" Height="316" Width="188">
             <TextBlock Text="version metier de base"
                        FontWeight="Bold" />
             <StackPanel Orientation="Horizontal" x:Name="Stack">
@@ -32,77 +34,76 @@
                 <TextBlock Text=" Secondes " />
                 <TextBlock Text="{Binding Time.Seconds}" />
             </StackPanel>
-            <TextBlock Text="{Binding }" />
-            
+            <TextBlock Text="" />
             <!--Horloge Réelle-->
             <Grid x:Name="GridHr" 
                   HorizontalAlignment="Left"
                   Height="130"
-                  Width="130">                
+                  Width="130">
                 <Ellipse Fill="#FFF1F1F1"
-                         Stroke="Black"
-                         StrokeThickness="4" />
+            		Stroke="Black"
+            		StrokeThickness="4" />
                 <Rectangle Fill="Red"
-                           Margin="0"
-                           Stroke="Red"
-                           VerticalAlignment="Center" />
+            		Margin="0"
+            		Stroke="Red"
+            		VerticalAlignment="Center" />
                 <Rectangle Fill="Red"
-                           Margin="0"
-                           Stroke="Red"
-                           HorizontalAlignment="Center" />
-                
+            		Margin="0"
+            		Stroke="Red"
+            		HorizontalAlignment="Center" />
+
                 <!--Seconde-->
                 <Rectangle Height="77"
-                           Margin="59,10,58.2,0"
-                           Stroke="Green"
-                           StrokeThickness="4"
-                           VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.715">
+            		Margin="59,10,58.2,0"
+            		Stroke="Green"
+            		StrokeThickness="4"
+            		VerticalAlignment="Top"
+            		RenderTransformOrigin="0.5,0.715">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
                             <SkewTransform />
-                            <RotateTransform Angle="{Binding ToMillisecondes, ConverterParameter = SEC, Converter={StaticResource dac}}"/>
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=SEC, Converter={StaticResource dac}}"/>
                             <TranslateTransform />
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                
+
                 <!--Minutes-->
                 <Rectangle Height="77"
-                           Margin="59,10,58.2,0"
-                           Stroke="Yellow"
-                           StrokeThickness="4"
-                           VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.715">
+            		Margin="59,10,58.2,0"
+            		Stroke="Yellow"
+            		StrokeThickness="4"
+            		VerticalAlignment="Top"
+            		RenderTransformOrigin="0.5,0.715">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
                             <SkewTransform />
-                            <RotateTransform Angle="{Binding Time.Minutes, Converter={StaticResource dac}}"/>
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=MIN, Converter={StaticResource dac}}"/>
                             <TranslateTransform />
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                
+
                 <!--Heures-->
                 <Rectangle Height="77"
-                           Margin="59,10,58.2,0"
-                           Stroke="Red"
-                           StrokeThickness="4"
-                           VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.715">
+            		Margin="59,10,58.2,0"
+            		Stroke="Red"
+            		StrokeThickness="4"
+            		VerticalAlignment="Top"
+            		RenderTransformOrigin="0.5,0.715">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
                             <SkewTransform />
-                            <RotateTransform Angle="{Binding Time.Hours, Converter={StaticResource dac}}"/>
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=HOUR, Converter={StaticResource dac}}"/>
                             <TranslateTransform />
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
             </Grid>
-            
+
             <!--Horloge Virtuelle-->
             <Grid DataContext="{StaticResource hv}" 
                 x:Name="GridHv" 
@@ -110,87 +111,232 @@
                   Height="130"
                   Width="130"
                   d:IsHidden="False">
-                
+
                 <Ellipse Fill="#FFF1F1F1"
-                         Stroke="Black"
-                         StrokeThickness="4" />
+            		Stroke="Black"
+            		StrokeThickness="4" />
                 <Rectangle Fill="Red"
-                           Margin="0"
-                           Stroke="Red"
-                           VerticalAlignment="Center" />
+            		Margin="0"
+            		Stroke="Red"
+            		VerticalAlignment="Center" />
                 <Rectangle Fill="Red"
-                           Margin="64.5,0"
-                           Stroke="Red"
-                           HorizontalAlignment="Center" />
-                
+            		Margin="64.5,0"
+            		Stroke="Red"
+            		HorizontalAlignment="Center" />
+
                 <!--Seconde-->
                 <Rectangle Height="77"
-                           Margin="59,10,58.2,0"
-                           Stroke="Green"
-                           StrokeThickness="4"
-                           VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.715">                    
+            		Margin="59,10,58.2,0"
+            		Stroke="Green"
+            		StrokeThickness="4"
+            		VerticalAlignment="Top"
+            		RenderTransformOrigin="0.5,0.715">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
                             <SkewTransform />
-                            <RotateTransform Angle="{Binding Time.Milliseconds, Converter={StaticResource dac}}"/>                                                       
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=SEC, Converter={StaticResource dac}}"/>
                             <TranslateTransform />
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                
+
                 <!--Minutes-->
                 <Rectangle Height="77"
-                           Margin="59,10,58.2,0"
-                           Stroke="Yellow"
-                           StrokeThickness="4"
-                           VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.715">
+            		Margin="59,10,58.2,0"
+            		Stroke="Yellow"
+            		StrokeThickness="4"
+            		VerticalAlignment="Top"
+            		RenderTransformOrigin="0.5,0.715">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
                             <SkewTransform />
-                            <RotateTransform Angle="{Binding Time.Seconds, Converter={StaticResource dac}}" />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=MIN, Converter={StaticResource dac}}" />
                             <TranslateTransform />
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
-                
+
                 <!--Heure-->
                 <Rectangle Height="77"
-                           Margin="59,10,58.2,0"
-                           Stroke="Red"
-                           StrokeThickness="4"
-                           VerticalAlignment="Top"
-                           RenderTransformOrigin="0.5,0.715">
+            		Margin="59,10,58.2,0"
+            		Stroke="Red"
+            		StrokeThickness="4"
+            		VerticalAlignment="Top"
+            		RenderTransformOrigin="0.5,0.715">
                     <Rectangle.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform />
                             <SkewTransform />
-                            <RotateTransform Angle="{Binding Time.Hours, Converter={StaticResource dac}}" />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=HOUR, Converter={StaticResource dac}}" />
                             <TranslateTransform />
                         </TransformGroup>
                     </Rectangle.RenderTransform>
                 </Rectangle>
             </Grid>
-            <TextBlock Text="version Horloge"
-                       FontWeight="Bold" />
-            <TextBlock Text="{Binding}" />
-            <TextBlock Text="{Binding Time}" />
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text=" Heure " />
-                <TextBlock Text="{Binding Time.Hours}" />
-                <TextBlock Text=" Minutes " />
-                <TextBlock Text="{Binding Time.Minutes}" />
-                <TextBlock Text=" Secondes " />
-                <TextBlock Text="{Binding Time.Seconds}" />
-            </StackPanel>
         </StackPanel>
-        <Button x:Name="button"
-                Content="Button"
-                Height="50"
-                Margin="390,10,10.4,0"
-                VerticalAlignment="Top" />
+        <StackPanel Margin="193,5,0,0"
+        	HorizontalAlignment="Left"
+        	VerticalAlignment="Top" Height="316" Width="188">
+            <TextBlock Text=""/>
+            <StackPanel Orientation="Horizontal" x:Name="Stack1">
+                <TextBlock Text="" />
+                <TextBlock Text="" />
+                <TextBlock Text="" />
+                <TextBlock Text="" />
+                <TextBlock Text="" />
+                <TextBlock Text="" />
+            </StackPanel>
+            <TextBlock Text="" />
+            <!--Horloge horloge aléatoire-->
+            <Grid DataContext="{StaticResource ha}" 
+                x:Name="GridHa" 
+        		HorizontalAlignment="Left"
+        		Height="130"
+        		Width="130">
+                <Ellipse Fill="#FFF1F1F1"
+        			Stroke="Black"
+        			StrokeThickness="4" />
+                <Rectangle Fill="Red"
+        			Margin="0"
+        			Stroke="Red"
+        			VerticalAlignment="Center" />
+                <Rectangle Fill="Red"
+        			Margin="0"
+        			Stroke="Red"
+        			HorizontalAlignment="Center" />
+
+                <!--Seconde-->
+                <Rectangle Height="77"
+        			Margin="59,10,58.2,0"
+        			Stroke="Green"
+        			StrokeThickness="4"
+        			VerticalAlignment="Top"
+        			RenderTransformOrigin="0.5,0.715">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=SEC, Converter={StaticResource dac}}"/>
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <!--Minutes-->
+                <Rectangle Height="77"
+        			Margin="59,10,58.2,0"
+        			Stroke="Yellow"
+        			StrokeThickness="4"
+        			VerticalAlignment="Top"
+        			RenderTransformOrigin="0.5,0.715">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=MIN, Converter={StaticResource dac}}"/>
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <!--Heures-->
+                <Rectangle Height="77"
+        			Margin="59,10,58.2,0"
+        			Stroke="Red"
+        			StrokeThickness="4"
+        			VerticalAlignment="Top"
+        			RenderTransformOrigin="0.5,0.715">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=HOUR, Converter={StaticResource dac}}"/>
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Grid>
+
+            <!--Horloge fuseau-->
+            <Grid 
+        		x:Name="GridHf" 
+        		HorizontalAlignment="Left"
+        		Height="130"
+        		Width="130"
+        		d:IsHidden="False">
+
+                <Ellipse Fill="#FFF1F1F1"
+        			Stroke="Black"
+        			StrokeThickness="4" />
+                <Rectangle Fill="Red"
+        			Margin="0"
+        			Stroke="Red"
+        			VerticalAlignment="Center" />
+                <Rectangle Fill="Red"
+        			Margin="64.5,0"
+        			Stroke="Red"
+        			HorizontalAlignment="Center" />
+
+                <!--Seconde-->
+                <Rectangle Height="77"
+        			Margin="59,10,58.2,0"
+        			Stroke="Green"
+        			StrokeThickness="4"
+        			VerticalAlignment="Top"
+        			RenderTransformOrigin="0.5,0.715">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=SEC, Converter={StaticResource dac}}"/>
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <!--Minutes-->
+                <Rectangle Height="77"
+        			Margin="59,10,58.2,0"
+        			Stroke="Yellow"
+        			StrokeThickness="4"
+        			VerticalAlignment="Top"
+        			RenderTransformOrigin="0.5,0.715">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=MIN, Converter={StaticResource dac}}" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+
+                <!--Heure-->
+                <Rectangle Height="77"
+        			Margin="59,10,58.2,0"
+        			Stroke="Red"
+        			StrokeThickness="4"
+        			VerticalAlignment="Top"
+        			RenderTransformOrigin="0.5,0.715">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding Time.TotalMilliseconds, ConverterParameter=HOUR, Converter={StaticResource dac}}" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Grid>
+
+        </StackPanel>
+        <CheckBox x:Name="checkBox"
+                  Content="Reverse"
+                  HorizontalAlignment="Left"
+                  Margin="386,82,0,0"
+                  VerticalAlignment="Top"
+                  Command="{Binding ReverseCommand}"/>
     </Grid>
 </Window>
