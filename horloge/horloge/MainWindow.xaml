@@ -13,10 +13,10 @@
         Width="652.434"        
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <!--<local:HorlogeAleatoire x:Key="ha" />
+        <local:HorlogeAleatoire x:Key="ha" />
         <local:HorlogeReel x:Key="hr" />
         <local:HorlogeVirtuelle x:Key="hv" />
-        <local:HorlogeReverse x:Key="rh" />-->
+        <local:HorlogeReverse x:Key="rh" />
         <trade:AngleMultiConverter x:Key="amc" />
         <LinearGradientBrush x:Key="Contour"
                              EndPoint="0.5,1"
@@ -287,7 +287,8 @@
         </DataTemplate>
     </Window.Resources>
     <Grid x:Name="GridMain">
-        <StackPanel Margin="5"
+        <StackPanel DataContext="{StaticResource hr}"
+                    Margin="5"
                     VerticalAlignment="Top"
                     d:LayoutOverrides="VerticalAlignment"
                     HorizontalAlignment="Left">
@@ -302,9 +303,23 @@
                 <TextBlock Text="{Binding Time.Seconds}" />
             </StackPanel>
         </StackPanel>
-        <ListBox x:Name="listBox"
+        <Grid x:Name="GridHorloges">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="323*"/>
+                <ColumnDefinition Width="324*"/>
+            </Grid.ColumnDefinitions>
+            <ContentControl Grid.Row="0" Content="{Binding Hr}"/>
+            <ContentControl Grid.Row="1" Content="{Binding Hv}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="324*"/>
+                <RowDefinition Height="324*"/>
+            </Grid.RowDefinitions>
+         
+
+        </Grid>
+        <!--<ListBox x:Name="listBox"
                      ItemsSource="{Binding Horloges}"
-                     ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" Margin="0,42,281.4,132">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel IsItemsHost="True"
@@ -312,6 +327,6 @@
                                    Width="{Binding ActualWidth, ElementName=listBox}" />
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-        </ListBox>
+        </ListBox>-->
     </Grid>
 </Window>
