@@ -6,36 +6,20 @@ using System.Text;
 namespace horloge
 {
     public class HorlogeReel : Horloge
-    {
-        private const int ADD_MILLI = 20;
+    {        
         protected override void OnTicked()
-        {
-            if (!Reverse)
-            {
+        {           
                 DateTime dt = DateTime.Now;
-                this.Time = new TimeSpan(0, dt.Hour, dt.Minute, dt.Second, dt.Millisecond);
-            }
-            else
-            {
-                DateTime dt = DateTime.Now;
-                this.Time = this.Time.Subtract(new TimeSpan(0, 0, 0, 0, ADD_MILLI));
-            }
-            
+                this.Time = new TimeSpan(0, dt.Hour, dt.Minute, dt.Second, dt.Millisecond);            
          }
     }
 
     public class HorlogeVirtuelle : Horloge
     {
+        private const int ADD_MILLI = 20;
         protected override void OnTicked()
-        {
-            if (!Reverse)
-            {
-                this.Time = this.Time.Add(new TimeSpan(0, 0, 0, 0, (int)_speed));
-            }
-            else
-            {
-                this.Time = this.Time.Subtract(new TimeSpan(0, 0, 0, (int)_speed));
-            }
+        {           
+                this.Time = this.Time.Add(new TimeSpan(0, 0, 0, 0, ADD_MILLI));          
         }
     }
 

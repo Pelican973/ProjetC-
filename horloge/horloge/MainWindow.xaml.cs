@@ -1,4 +1,5 @@
-﻿using horloge.trade;
+﻿using horloge.mvvm;
+using horloge.trade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,16 +24,8 @@ namespace horloge
     {
         public MainWindow()
         {
-            InitializeComponent();
-            
-            this.DataContext = new HorlogeReel();            
-        }
-
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            Slider slider = sender as Slider;
-            ViewModelBase viewModel = (ViewModelBase)DataContext;
-            viewModel.Speed_changed(slider.Value);
+            InitializeComponent();            
+            this.DataContext = new GlobalMVVM();            
         }
     }
 }
